@@ -1,7 +1,7 @@
 
 {
   "name": "gumga-alert-ng",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Gumga Alert",
   "main": "./src/rest.js",
   "directories": {

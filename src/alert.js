@@ -1,14 +1,32 @@
+import style from './alert.style.js'
+
 (function(){
 	'use strict';
+
+	const applyStyle = () => {
+		if(!document.getElementById("gumga-alert-style")){
+			let head = document.head || document.getElementsByTagName('head')[0]
+			let elm = document.createElement('style');
+			elm.type = 'text/css';
+			elm.id = 'gumga-alert-style';
+			if (elm.styleSheet) {
+					elm.styleSheet.cssText = style;
+			} else {
+					elm.appendChild(document.createTextNode(style));
+			}
+			head.appendChild(elm);
+		}
+	}
 
 	Alert.$inject = []
 	function Alert(){
 		return {
 			$get: function(){
+				applyStyle();
 				return this;
 			},
 			__config: {
-				warn: {
+				warning: {
 					icon: 'glyphicon glyphicon-warning-sign',
 					type: 'warning'
 				},
@@ -30,6 +48,7 @@
 				,		offset = options.offset || 50
 				,		timer = options.timer || 100
 				,		delay = options.delay || 6000
+				,		color = options.color || undefined
 				,		alowDismiss = options.alowDismiss || true
 				,		animationEnter = options.animationEnter || 'animated bounceInRight'
 				,		animationExit = options.animationExit || 'animated bounceOutRight';
@@ -49,17 +68,34 @@
 						enter: animationEnter,
 						exit: animationExit
 					},
-					template: '<div data-notify="container" class="col-xs-9 col-sm-3 alert alert-{0}" role="alert">' +
-					'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-					'<span data-notify="icon"></span> ' +
-					'<span data-notify="title"><b>{1}</b></span><br> ' +
-					'<span data-notify="message">{2}</span>' +
-					'</div>'
+					template: `
+
+					<div data-notify="container"
+						class="gumga-alert-popup col-xs-9 col-sm-3 alert alert-{0}" role="alert">
+
+						<button
+								type="button"
+								aria-hidden="true"
+								class="close gumga-alert-popup-icon-close gumga-alert-popup-icon-close-{0}"
+								data-notify="dismiss">×</button>
+						<div class="gumga-alert-popup-icon">
+							<span class="gumga-alert-popup-icon-circle">
+							<div data-notify="icon"></div>
+							</span>
+
+						</div>
+						<div class="gumga-alert-popup-content">
+							<span data-notify="title"><b>{1}</b></span><br>
+							<span data-notify="message">{2}</span>
+						</div>
+					</div>
+
+					`
 				})
 			},
 			createWarningMessage: function(title,message,options){
 				if(!options) options = {};
-				this._notify('warn',title,message,options);
+				this._notify('warning',title,message,options);
 			},
 			createDangerMessage: function(title,message,options){
 				if(!options) options = {};
