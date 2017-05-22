@@ -57,10 +57,18 @@ export default `
     opacity: 1;
   }
 
+  div.gumga-alert-popup span[data-notify="message"]{
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+  }
+
   div.gumga-alert-popup-content{
     width: 100%;
     color: #fff;
-    margin-left: 55px;
+    padding-left: 55px;
   }
 
   div.gumga-alert-popup-icon{
