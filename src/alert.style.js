@@ -57,7 +57,7 @@ export default `
     opacity: 1;
   }
 
-  div.gumga-alert-popup span[data-notify="message"]{
+  div.gumga-alert-popup span[data-notify="message"], div.gumga-alert-popup-content span[data-notify="title"]{
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
     white-space: -pre-wrap;
@@ -77,8 +77,6 @@ export default `
     font-size: 30px;
     position: absolute;
   }
-
-
 
   span.gumga-alert-popup-icon-circle{
     width: 45px;
