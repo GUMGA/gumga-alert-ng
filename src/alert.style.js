@@ -87,10 +87,13 @@ export default `
     left: -5px;
     border-radius: 50%;
     border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   span.gumga-alert-popup-icon-circle > div{
-    margin: 5px !important;
+    font-size: 25px;
   }
 
 
